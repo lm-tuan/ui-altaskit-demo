@@ -32,10 +32,27 @@ export default () => (
         );
       }}
     >
-        
       {({ formProps, submitting }) => (
         <form {...formProps}>
-          <FormHeader title="Login" />  
+          <FormHeader title="Register" />
+           <Field name="email" label="Email" isRequired defaultValue="">
+            {({ fieldProps, error }) => (
+              <Fragment>
+                <TextField type="email" autoComplete="off" {...fieldProps} />
+                {!error && (
+                  <HelperMessage>
+                    You must use email.
+                  </HelperMessage>
+                )}
+                {error && (
+                  <ErrorMessage>
+                    This user name is already in use, try another one.
+                  </ErrorMessage>
+                )}
+              </Fragment>
+            )}
+          </Field> 
+        
           <Field name="username" label="User name" isRequired defaultValue="">
             {({ fieldProps, error }) => (
               <Fragment>
@@ -78,23 +95,38 @@ export default () => (
               </Fragment>
             )}
           </Field>
-          <CheckboxField name="remember" label="Remember me" defaultIsChecked>
-            {({ fieldProps }) => (
-              <Checkbox {...fieldProps} label="Always sign in on this device" />
+          <Field
+            name="passwordConfim"
+            label="Confim Password"
+            defaultValue=""
+            isRequired
+            validate={value => (value.length < 8 ? "TOO_SHORT" : undefined)}
+          >
+            {({ fieldProps, error, valid }) => (
+              <Fragment>
+                <TextField type="password" {...fieldProps} />
+                {!error && !valid && (
+                  <HelperMessage>
+                    Use 8 or more characters with a mix of letters, numbers &
+                    symbols.
+                  </HelperMessage>
+                )}
+                {error && (
+                  <ErrorMessage>
+                    Password needs to be more than 8 characters.
+                  </ErrorMessage>
+                )}
+                {valid && <ValidMessage>Awesome password!</ValidMessage>}
+              </Fragment>
             )}
-          </CheckboxField>
+          </Field>
           <FormFooter>
             <ButtonGroup>
-              <Button appearance="subtle">Cancel</Button>
               <Button type="submit" appearance="primary" isLoading={submitting}>
-                Sign up
+                Register
               </Button>
             </ButtonGroup>
           </FormFooter>
-          <TagGroup>
-            <Tag text="Create a new account" href="/register" />
-            <Tag text="Forgot your password?" href="/restpass" />
-          </TagGroup>
         </form>
       )}
     </Form>

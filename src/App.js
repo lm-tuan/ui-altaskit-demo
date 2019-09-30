@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 
-//import Button from './components/ButtonCustoms';
-//import Avatar from './components/AvatarCutstoms';
-//import Dropdown from './components/DropdownCustoms';
 import Navigation from "./components/layouts/NavigationCustoms";
 import routes from "./Routes/index";
 

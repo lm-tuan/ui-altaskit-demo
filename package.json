@@ -11,6 +11,8 @@
     "@atlaskit/dropdown-menu": "^8.1.1",
     "@atlaskit/form": "^6.2.3",
     "@atlaskit/global-navigation": "^8.0.1",
+    "@atlaskit/tag": "^9.0.7",
+    "@atlaskit/tag-group": "^9.0.4",
     "@atlaskit/textfield": "^3.1.0",
     "@atlaskit/theme": "^9.2.3",
     "react": "^16.10.1",
