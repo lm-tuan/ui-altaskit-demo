@@ -1,46 +1,41 @@
 import { jsx } from '@emotion/core';
-import React ,{ Component, SyntheticEvent } from 'react';
-import Button from '@atlaskit/button';
+import React ,{ Component, SyntheticEvent,forwardRef,useState, useRef, useImperativeHandle   } from 'react';
 import Drawer from '@atlaskit/drawer';
 
- class DrawerCutoms extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            isDrawerOpen: false,
-          };  
-    }
- 
-  openDrawer = () =>
-    this.setState({
-      isDrawerOpen: this.props.isDrawerOpen
-    });
 
-  onClose = (...args) => {
+ const DrawerCutoms =forwardRef( (props,ref) => {
+  
+  const [isDrawerOpen, setisDrawerOpen] = useState(false);
+
+  const openDrawer = () => setisDrawerOpen(true);
+  useImperativeHandle(ref, () => ({
+
+    DrawerCustomClick(prams) {
+      setisDrawerOpen(prams)
+    }
+
+  }));
+
+  const onClose = (...args) => {
     console.log('onClose', args);
-    this.setState({
-      isDrawerOpen: false,
-    });
+    setisDrawerOpen(false)
   };
 
-  onCloseComplete = (...args) =>
+  const onCloseComplete = (...args) =>
     console.log('onCloseComplete', args);
 
-  render() {
-      console.log(this.props.isDrawerOpen);
     return (
       <div css={{ padding: '2rem' }}>
         <Drawer
-          onClose={this.onClose}
-          onCloseComplete={this.onCloseComplete}
-          isOpen={this.state.isDrawerOpen}
+          onClose={onClose}
+          onCloseComplete={onCloseComplete}
+          isOpen={isDrawerOpen}
           width="wide"
         >
           <code>Drawer contents</code>
         </Drawer>
       </div>
     );
-  }
-}
+  })
 
 export default DrawerCutoms;

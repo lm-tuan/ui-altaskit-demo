@@ -3,6 +3,7 @@ import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 
 import Navigation from "./components/layouts/NavigationCustoms";
 import routes from "./Routes/index";
+import DrawerCutoms from './components/DrawerCutoms'
 
 class App extends Component {
   ShowContet = routes => {
