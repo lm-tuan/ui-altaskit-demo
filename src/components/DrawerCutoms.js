@@ -1,6 +1,7 @@
 import { jsx } from '@emotion/core';
 import React ,{ Component, SyntheticEvent,forwardRef,useState, useRef, useImperativeHandle   } from 'react';
 import Drawer from '@atlaskit/drawer';
+import Test from './Test';
 
 
  const DrawerCutoms =forwardRef( (props,ref) => {
@@ -32,7 +33,9 @@ import Drawer from '@atlaskit/drawer';
           isOpen={isDrawerOpen}
           width="wide"
         >
-          <code>Drawer contents</code>
+          <code>
+            <Test/>
+          </code>
         </Drawer>
       </div>
     );
